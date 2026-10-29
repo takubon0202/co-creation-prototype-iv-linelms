@@ -1,0 +1,407 @@
+/* 縦長の LP。背景は雪・白・藍の帯で区切り、絵（端末の画面・アイコン・イラスト）はすべて生成画像 */
+:root {
+  --ai: #1e3557;      /* 藍：文字・塗りのボタン */
+  --beni: #d93a49;    /* 紅花：STEP の番号・締切 */
+  --snow: #f3f6fa;    /* 雪：背景 */
+  --paper: #ffffff;
+  --mist: #dfe6ef;    /* 区切り線 */
+  --slate: #5d6b7e;   /* 補足の文字 */
+  --line: #06c755;    /* LINE 緑：友だち追加だけ */
+  --line-dark: #05a847;
+
+  /* 文字（端末の外） */
+  --fs-body: 18px;
+  --fs-lead: 21px;
+  --fs-h2: 40px;
+  --fs-num: 80px;
+  --fs-small: 16px;
+  --lh: 1.9;
+  --lh-head: 1.45;
+  --ls: .04em;
+
+  /* 余白 */
+  --band-y: 128px;
+  --gutter: 24px;
+
+  /* 角丸は3種類、影は1種類だけ */
+  --r-lg: 28px;
+  --r-md: 16px;
+  --r-pill: 999px;
+  --shadow: 0 8px 24px rgba(30, 53, 87, .12);
+}
+
+@media (max-width: 767px) {
+  :root {
+    --fs-body: 16px;
+    --fs-lead: 17px;
+    --fs-h2: 28px;
+    --fs-num: 60px;
+    --fs-small: 15px;
+    --band-y: 72px;
+    --gutter: 16px;
+  }
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: "Zen Kaku Gothic New", "Hiragino Sans", sans-serif;
+  font-size: var(--fs-body);
+  font-weight: 500;
+  line-height: var(--lh);
+  letter-spacing: var(--ls);
+  color: var(--ai);
+  background: var(--snow);
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; display: block; }
+button { font: inherit; letter-spacing: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--beni); outline-offset: 3px; }
+.sp-only { display: none; }
+
+/* 生成したアイコン（文字の大きさに合わせる） */
+.ic { display: inline-block; flex: none; width: 1.5em; height: 1.5em; object-fit: contain; }
+
+.wrap { max-width: 1080px; margin: 0 auto; padding-inline: max(var(--gutter), env(safe-area-inset-left, 0px)) max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.band { padding-block: var(--band-y); }
+.band.snow { background: var(--snow); }
+.band.paper { background: var(--paper); }
+.band.ink { background: var(--ai); color: #fff; }
+
+h1, h2, p { margin: 0; }
+h2 {
+  font-size: var(--fs-h2);
+  font-weight: 900;
+  line-height: var(--lh-head);
+  letter-spacing: .05em;
+  text-wrap: balance;
+}
+.lead { margin-top: 20px; font-size: var(--fs-lead); font-weight: 700; }
+
+/* ボタン：塗り（LINE 緑）と線だけの2種類 */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px 32px 14px 22px;
+  border: none;
+  border-radius: var(--r-md);
+  background: var(--line);
+  color: #fff;
+  font-size: 19px;
+  font-weight: 900;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: background .15s;
+}
+.cta:hover { background: var(--line-dark); }
+.cta .ic { width: 40px; height: 40px; }
+.cta.big { padding: 18px 44px 18px 30px; font-size: 21px; }
+.line-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 28px;
+  padding: 10px 22px 10px 14px;
+  border: 2px solid var(--ai);
+  border-radius: var(--r-md);
+  background: transparent;
+  font-size: var(--fs-small);
+  font-weight: 700;
+  cursor: pointer;
+}
+.line-btn:hover { background: var(--paper); }
+.line-btn .ic { width: 30px; height: 30px; }
+
+/* ===== 0. 困りごとの1文 ===== */
+.mission {
+  padding-block: 14px;
+  padding-inline: max(var(--gutter), env(safe-area-inset-left, 0px)) max(var(--gutter), env(safe-area-inset-right, 0px));
+  background: var(--ai);
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.7;
+  text-align: center;
+}
+
+/* ===== 1. ヒーロー ===== */
+.hero { padding-block: 88px var(--band-y); }
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
+  align-items: center;
+  gap: 56px;
+}
+.brand { display: flex; align-items: center; gap: 18px; }
+.brand-icon { width: 84px; height: 84px; flex: none; }
+.brand h1 { font-size: 46px; font-weight: 900; line-height: 1.3; letter-spacing: .05em; }
+.hero-lead { margin-top: 28px; font-size: 23px; font-weight: 700; line-height: 1.8; }
+
+.merge { display: flex; align-items: center; gap: 20px; margin-block: 40px 44px; }
+.merge-num { display: flex; align-items: baseline; gap: 6px; font-size: 19px; font-weight: 700; line-height: 1.2; }
+.merge-num b { font-size: var(--fs-num); font-weight: 900; line-height: 1; letter-spacing: 0; font-variant-numeric: tabular-nums; }
+.merge-num.one b { color: var(--beni); }
+.merge-lms { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 12px; font-size: 15px; font-weight: 700; }
+.merge-lms span { display: inline-flex; align-items: center; gap: 6px; }
+.merge-lms .ic { width: 26px; height: 26px; }
+.merge-arrow { width: 56px; height: 56px; margin-bottom: 40px; }
+
+.hero-art { margin: 0; padding: 20px; border-radius: var(--r-lg); background: var(--paper); box-shadow: var(--shadow); }
+.hero-art img { width: 100%; height: auto; }
+
+/* ===== 2. 困りごと ===== */
+.trouble-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  gap: 24px;
+  margin-top: 56px;
+}
+.trouble {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  border-radius: var(--r-lg);
+  background: var(--snow);
+  overflow: hidden;
+}
+.trouble img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
+.trouble.big { grid-row: 1 / span 2; }
+.trouble.big img { flex: 1; min-height: 0; aspect-ratio: auto; object-position: 70% center; }
+.trouble figcaption {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.6;
+}
+.trouble figcaption .ic { width: 48px; height: 48px; }
+.trouble.big figcaption { padding: 22px 26px; font-size: 24px; font-weight: 900; }
+.trouble.big figcaption .ic { width: 64px; height: 64px; }
+
+/* ===== 3〜6. STEP ===== */
+.step-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 80px;
+}
+.step-grid.flip { grid-template-columns: auto minmax(0, 1fr); }
+.step-grid.flip .step-copy { order: 2; }
+.step-num {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 8px;
+  color: var(--beni);
+  font-size: var(--fs-num);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0;
+}
+.step-num small { font-size: 18px; letter-spacing: .14em; }
+
+.chips { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 36px 0 0; padding: 0; list-style: none; }
+.chips li {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 18px 8px 10px;
+  border-radius: var(--r-md);
+  background: var(--paper);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.band.paper .chips li { background: var(--snow); }
+.chips li .ic { width: 36px; height: 36px; }
+.chips li b { font-weight: 900; font-variant-numeric: tabular-nums; }
+.chips li.arrow { padding: 0; background: none; }
+.chips li.arrow .ic { width: 28px; height: 28px; }
+
+.try {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 24px;
+  color: var(--slate);
+  font-size: var(--fs-small);
+  font-weight: 700;
+}
+.try .ic { width: 36px; height: 36px; }
+
+.step-device { display: flex; justify-content: center; }
+
+/* 端末を縮小して置く（devices.css の実寸 × --s） */
+.device-wrap { position: relative; width: calc(var(--w) * var(--s)); height: calc(var(--h) * var(--s)); }
+.device-wrap .device { position: absolute; top: 0; left: 0; transform: scale(var(--s)); transform-origin: top left; }
+.device-wrap.phone { --w: 428px; --h: 868px; --s: .95; }
+.device-wrap.tablet { --w: 560px; --h: 778px; --s: .9; }
+
+/* ===== 端末の画面：生成した画像を重ね、押せる所に透明なボタンを置く ===== */
+.device .device-screen.shot-screen { position: relative; overflow: hidden; background: var(--snow); }
+/* 画像（1:2）と iPhone の画面（約1:2.13）の差は、左右を 1.5% ずつ切り、残りは横に少し縮めて合わせる */
+.shot-stage { position: absolute; inset: 0 -1.5%; }
+.device-ipad-pro .shot-stage { inset: 0; }  /* iPad の画像は画面と同じ比で作る */
+.shot {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: fill;
+  opacity: 0;
+  transition: opacity .2s ease-out;
+}
+.shot.is-current { opacity: 1; }
+.spot {
+  position: absolute;
+  padding: 0;
+  border: none;
+  border-radius: 18px;
+  background: transparent;
+  cursor: pointer;
+}
+.spot:hover, .spot:focus-visible { outline: 4px solid var(--line); outline-offset: 2px; }
+
+/* ===== 7. 続けるほどラクに ===== */
+.perks {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 48px;
+  margin: 40px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.perks li {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-block: 20px;
+  border-bottom: 2px solid var(--mist);
+  font-size: 21px;
+  font-weight: 700;
+}
+.perks li .ic { width: 72px; height: 72px; }
+
+/* ===== 8. 自分で用意した素材 ===== */
+.sketch-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); align-items: center; gap: 64px; }
+.sketch-photo {
+  margin: 0;
+  padding: 14px 14px 44px;
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: var(--shadow);
+  transform: rotate(-2deg);
+}
+.sketch-photo img { width: 100%; height: auto; }
+
+/* ===== 9. 友だち追加 ===== */
+.join { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.join-icon { width: 104px; height: 104px; margin-bottom: 24px; }
+.join .cta { margin-top: 40px; box-shadow: none; }
+.join .note { margin-top: 20px; color: rgba(255, 255, 255, .78); font-size: var(--fs-small); }
+
+footer {
+  padding-block: 28px 40px;
+  padding-inline: max(var(--gutter), env(safe-area-inset-left, 0px)) max(var(--gutter), env(safe-area-inset-right, 0px));
+  background: var(--ai);
+  border-top: 1px solid rgba(255, 255, 255, .14);
+  color: rgba(255, 255, 255, .7);
+  font-size: 15px;
+  text-align: center;
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: max-content;
+  max-width: calc(100% - 32px);
+  padding: 10px 24px 10px 12px;
+  border-radius: var(--r-pill);
+  background: var(--beni);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.6;
+  box-shadow: var(--shadow);
+  transform: translateX(-50%);
+}
+.toast .ic { width: 36px; height: 36px; }
+
+/* ===== タブレット：STEP とヒーローは縦に並べる ===== */
+@media (max-width: 1023px) {
+  .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 48px; }
+  .step-grid, .step-grid.flip { grid-template-columns: minmax(0, 1fr); gap: 56px; }
+  .step-grid.flip .step-copy { order: 0; }
+  .sketch-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+}
+
+/* ===== スマホ ===== */
+@media (max-width: 767px) {
+  .sp-only { display: inline; }
+  .mission { font-size: 15px; padding-block: 12px; }
+
+  .hero { padding-top: 48px; }
+  .brand { gap: 14px; }
+  .brand-icon { width: 64px; height: 64px; }
+  .brand h1 { font-size: 30px; }
+  .hero-lead { margin-top: 20px; font-size: 19px; }
+  .merge { gap: 12px; margin-block: 32px 36px; }
+  .merge-num { font-size: 16px; }
+  .merge-arrow { width: 40px; height: 40px; }
+  .hero .cta { width: 100%; }
+  .hero-art { padding: 12px; }
+
+  .trouble-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; gap: 12px; margin-top: 36px; }
+  .trouble.big { grid-row: auto; grid-column: 1 / -1; }
+  .trouble.big img { aspect-ratio: 4 / 3; }
+  .trouble figcaption { flex-direction: column; align-items: flex-start; gap: 6px; padding: 12px 14px 14px; font-size: 15px; }
+  .trouble figcaption .ic { width: 40px; height: 40px; }
+  .trouble.big figcaption { flex-direction: row; align-items: center; gap: 12px; padding: 16px 18px; font-size: 18px; }
+  .trouble.big figcaption .ic { width: 52px; height: 52px; }
+
+  .step-grid, .step-grid.flip { gap: 40px; }
+  .step-num small { font-size: 15px; }
+  .chips { gap: 8px; margin-top: 24px; }
+  .chips li { padding: 6px 14px 6px 8px; font-size: 15px; }
+  .chips li .ic { width: 30px; height: 30px; }
+  .try { margin-top: 18px; }
+  .line-btn { margin-top: 20px; }
+
+  .device-wrap.phone { --s: .8; }
+  .device-wrap.tablet { --s: .61; }
+
+  .perks { grid-template-columns: minmax(0, 1fr); margin-top: 24px; }
+  .perks li { gap: 16px; padding-block: 14px; font-size: 17px; }
+  .perks li .ic { width: 56px; height: 56px; }
+
+  .sketch-photo { padding: 10px 10px 32px; }
+
+  .join-icon { width: 84px; height: 84px; }
+  .join .cta { width: 100%; padding: 16px 20px; font-size: 19px; }
+}
+
+/* 幅 360px 未満でも、端末を画面に収める */
+@media (max-width: 374px) {
+  .device-wrap.phone { --s: .74; }
+  .device-wrap.tablet { --s: .56; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

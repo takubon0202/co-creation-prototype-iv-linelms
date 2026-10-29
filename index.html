@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>締切まとめ通知（プロトタイプ）</title>
+  <meta name="description" content="WebClass 以外に出た課題も見落とさない、山形大学生のための締切通知">
+  <link rel="icon" href="images/icons/app.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devices.css@0.2.0/dist/devices.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 0. 誰のどの困りごとを解決するか -->
+  <p class="mission">WebClass 以外に出た課題も見落とさない、<br class="sp-only">山形大学生のための締切通知</p>
+
+  <!-- 1. ヒーロー -->
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <div class="brand">
+          <img class="brand-icon" src="images/icons/app.png" alt="">
+          <h1>締切まとめ通知</h1>
+        </div>
+        <p class="hero-lead">時間割のスクショと、<br>シラバスの URL を貼るだけ。<br>AI が締切を LINE に届けます。</p>
+        <div class="merge">
+          <div>
+            <p class="merge-num"><b>2</b>つの LMS</p>
+            <p class="merge-lms">
+              <span><img class="ic" src="images/icons/lms-webclass.png" alt="">WebClass</span>
+              <span><img class="ic" src="images/icons/lms-moodle.png" alt="">Moodle</span>
+            </p>
+          </div>
+          <img class="merge-arrow" src="images/icons/arrow.png" alt="">
+          <div>
+            <p class="merge-num one"><b>1</b>つの LINE</p>
+            <p class="merge-lms"><span><img class="ic" src="images/icons/lms-line.png" alt="">LINE</span></p>
+          </div>
+        </div>
+        <button class="cta js-cta" type="button"><img class="ic" src="images/icons/friend-add.png" alt="">友だち追加（デモ）</button>
+      </div>
+      <figure class="hero-art">
+        <img src="images/hero-flow.jpg" width="1400" height="933" alt="時間割とシラバスから、WebClass と Moodle の課題をまとめ、LINE に通知する流れ">
+      </figure>
+    </div>
+  </header>
+
+  <main>
+    <!-- 2. 困りごと -->
+    <section id="problem" class="band paper">
+      <div class="wrap">
+        <h2>締切は、あちこちに出てくる</h2>
+        <p class="lead">WebClass、Moodle、授業中の口頭。<br>見る場所が多いほど、見落とす。</p>
+        <div class="trouble-grid">
+          <figure class="trouble big">
+            <img src="images/trouble-main.jpg" alt="夜、スマホを見て課題の締切が過ぎていたことに気づき、頭を抱える学生">
+            <figcaption><img class="ic" src="images/icons/alarm-off.png" alt="">気づいたら、締切が過ぎていた</figcaption>
+          </figure>
+          <figure class="trouble">
+            <img src="images/trouble-tabs.jpg" alt="WebClass と Moodle の2つのサイトを行き来して疲れている学生">
+            <figcaption><img class="ic" src="images/icons/switch.png" alt="">2つのサイトを行き来する</figcaption>
+          </figure>
+          <figure class="trouble">
+            <img src="images/trouble-lecture.jpg" alt="授業中にスライドで出された課題を、メモせずに聞き流してしまう学生">
+            <figcaption><img class="ic" src="images/icons/lecture.png" alt="">授業中に出た課題を忘れる</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. STEP1 AI に送るだけ -->
+    <section id="step1" class="band snow">
+      <div class="wrap step-grid">
+        <div class="step-copy">
+          <p class="step-num"><small>STEP</small>1</p>
+          <h2>AI に送るだけ</h2>
+          <p class="lead">時間割はスクショ、シラバスは URL。<br>AI が読み取って、今週の締切をまとめる。</p>
+          <ul class="chips">
+            <li><img class="ic" src="images/icons/screenshot.png" alt="">スクショ</li>
+            <li><img class="ic" src="images/icons/link.png" alt="">URL</li>
+            <li><img class="ic" src="images/icons/pdf.png" alt="">PDF</li>
+          </ul>
+          <p class="try"><img class="ic" src="images/icons/tap.png" alt="">画面の「＋」を押して試せます</p>
+          <button class="line-btn js-replay" type="button" data-flow="chat"><img class="ic" src="images/icons/replay.png" alt="">最初から</button>
+        </div>
+        <div class="step-device">
+          <div class="device-wrap phone">
+            <div class="device device-iphone-14-pro">
+              <div class="device-frame">
+                <div class="device-screen shot-screen"><div class="shot-stage" data-flow="chat"></div></div>
+              </div>
+              <div class="device-stripe"></div><div class="device-header"></div><div class="device-sensors"></div><div class="device-btns"></div><div class="device-power"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. STEP2 授業ごとに自動で判定 -->
+    <section id="step2" class="band paper">
+      <div class="wrap step-grid flip">
+        <div class="step-copy">
+          <p class="step-num"><small>STEP</small>2</p>
+          <h2>授業ごとに自動で判定</h2>
+          <p class="lead">課題がどの LMS に出るかを、<br>AI がシラバスから見分ける。</p>
+          <ul class="chips">
+            <li><img class="ic" src="images/icons/lms-webclass.png" alt="">WebClass</li>
+            <li><img class="ic" src="images/icons/lms-moodle.png" alt="">Moodle</li>
+            <li><img class="ic" src="images/icons/deadline.png" alt="">今週の締切</li>
+            <li><img class="ic" src="images/icons/ondemand.png" alt="">オンデマンド</li>
+          </ul>
+        </div>
+        <div class="step-device">
+          <div class="device-wrap tablet">
+            <div class="device device-ipad-pro">
+              <div class="device-frame">
+                <div class="device-screen shot-screen"><div class="shot-stage" data-flow="timetable"></div></div>
+              </div>
+              <div class="device-stripe"></div><div class="device-header"></div><div class="device-sensors"></div><div class="device-btns"></div><div class="device-power"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. STEP3 LINE に届く -->
+    <section id="step3" class="band snow">
+      <div class="wrap step-grid">
+        <div class="step-copy">
+          <p class="step-num"><small>STEP</small>3</p>
+          <h2>LINE に届く</h2>
+          <p class="lead">週のはじめ、締切の前の夜、<br>始めたい日の朝に。</p>
+          <ul class="chips">
+            <li><img class="ic" src="images/icons/week.png" alt=""><b>日 20:00</b>今週のまとめ</li>
+            <li><img class="ic" src="images/icons/night.png" alt=""><b>21:00</b>明日締切</li>
+            <li><img class="ic" src="images/icons/morning.png" alt=""><b>8:00</b>そろそろ着手</li>
+          </ul>
+          <p class="try"><img class="ic" src="images/icons/tap.png" alt="">通知を押すと STEP4 へ</p>
+        </div>
+        <div class="step-device">
+          <div class="device-wrap phone">
+            <div class="device device-iphone-14-pro">
+              <div class="device-frame">
+                <div class="device-screen shot-screen"><div class="shot-stage" data-flow="lock"></div></div>
+              </div>
+              <div class="device-stripe"></div><div class="device-header"></div><div class="device-sensors"></div><div class="device-btns"></div><div class="device-power"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. STEP4 ボタンで返事 -->
+    <section id="step4" class="band paper">
+      <div class="wrap step-grid flip">
+        <div class="step-copy">
+          <p class="step-num"><small>STEP</small>4</p>
+          <h2>ボタンで返事</h2>
+          <p class="lead">返事はボタンを押すだけ。<br>「まだ」なら、また知らせる。</p>
+          <ul class="chips flow">
+            <li><img class="ic" src="images/icons/ok.png" alt="">了解</li>
+            <li class="arrow" aria-hidden="true"><img class="ic" src="images/icons/arrow.png" alt=""></li>
+            <li><img class="ic" src="images/icons/done.png" alt="">やった</li>
+            <li class="arrow" aria-hidden="true"><img class="ic" src="images/icons/arrow.png" alt=""></li>
+            <li><img class="ic" src="images/icons/start.png" alt="">始めた</li>
+          </ul>
+          <p class="try"><img class="ic" src="images/icons/tap.png" alt="">カードのボタンを押して試せます</p>
+          <button class="line-btn js-replay" type="button" data-flow="line"><img class="ic" src="images/icons/replay.png" alt="">最初から</button>
+        </div>
+        <div class="step-device">
+          <div class="device-wrap phone">
+            <div class="device device-iphone-14-pro">
+              <div class="device-frame">
+                <div class="device-screen shot-screen"><div class="shot-stage" data-flow="line"></div></div>
+              </div>
+              <div class="device-stripe"></div><div class="device-header"></div><div class="device-sensors"></div><div class="device-btns"></div><div class="device-power"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. 続けるほどラクに -->
+    <section id="perks" class="band snow">
+      <div class="wrap">
+        <h2>続けるほどラクに</h2>
+        <ul class="perks">
+          <li><img class="ic" src="images/icons/remind.png" alt="">「まだ」なら再通知</li>
+          <li><img class="ic" src="images/icons/learn.png" alt="">かかる時間を学習</li>
+          <li><img class="ic" src="images/icons/review.png" alt="">毎週ふりかえり</li>
+          <li><img class="ic" src="images/icons/campus.png" alt="">他大学の LMS にも対応予定</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 8. 自分で用意した素材（images/own-sketch.jpg を置くと表示される） -->
+    <section id="sketch" class="band paper" hidden>
+      <div class="wrap sketch-grid">
+        <div>
+          <h2>最初はこの1枚から</h2>
+          <p class="lead">紙に描いた画面のスケッチから、<br>このサービスは始まりました。</p>
+        </div>
+        <figure class="sketch-photo">
+          <img id="sketch-img" alt="紙に手で描いた、締切まとめ通知の画面のスケッチ">
+        </figure>
+      </div>
+    </section>
+
+    <!-- 9. 友だち追加 -->
+    <section id="join" class="band ink">
+      <div class="wrap join">
+        <img class="join-icon" src="images/icons/app.png" alt="">
+        <h2>締切を、LINE で受け取る</h2>
+        <button class="cta big js-cta" type="button"><img class="ic" src="images/icons/friend-add.png" alt="">友だち追加（デモ）</button>
+        <p class="note">プロトタイプのため、押しても登録はされません。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>締切まとめ通知（仮）／共創アントレプレナーシップⅣ プロトタイプ</footer>
+
+  <p id="toast" class="toast" role="status" hidden><img class="ic" src="images/icons/thanks.png" alt="">プロトタイプです。感想を聞かせてください</p>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+# 公開するのはサイトの表示に必要なファイルだけ
+.DS_Store
+plans/
+archive/
+images/original/
+TODO_LP修正メモ.md
+line_notification_mock.png
