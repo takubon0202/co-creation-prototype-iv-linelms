@@ -173,9 +173,9 @@ h2 {
   background: var(--snow);
   overflow: hidden;
 }
-.trouble img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
+.trouble > img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
 .trouble.big { grid-row: 1 / span 2; }
-.trouble.big img { flex: 1; min-height: 0; aspect-ratio: auto; object-position: 70% center; }
+.trouble.big > img { flex: 1; min-height: 0; aspect-ratio: auto; object-position: 70% center; }
 .trouble figcaption {
   display: flex;
   align-items: center;
@@ -376,7 +376,7 @@ footer {
 
   .trouble-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; gap: 12px; margin-top: 36px; }
   .trouble.big { grid-row: auto; grid-column: 1 / -1; }
-  .trouble.big img { aspect-ratio: 4 / 3; }
+  .trouble.big > img { aspect-ratio: 4 / 3; }
   .trouble figcaption { flex-direction: column; align-items: flex-start; gap: 6px; padding: 12px 14px 14px; font-size: 15px; }
   .trouble figcaption .ic { width: 40px; height: 40px; }
   .trouble.big figcaption { flex-direction: row; align-items: center; gap: 12px; padding: 16px 18px; font-size: 18px; }
