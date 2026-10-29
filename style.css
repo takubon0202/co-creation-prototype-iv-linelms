@@ -45,7 +45,7 @@
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 body {
   margin: 0;
   font-family: "Zen Kaku Gothic New", "Hiragino Sans", sans-serif;
@@ -61,6 +61,8 @@ body {
 img { max-width: 100%; display: block; }
 button { font: inherit; letter-spacing: inherit; color: inherit; }
 :focus-visible { outline: 3px solid var(--beni); outline-offset: 3px; }
+button { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+section[id] { scroll-margin-top: env(safe-area-inset-top, 0px); }
 .sp-only { display: none; }
 
 /* 生成したアイコン（文字の大きさに合わせる） */
@@ -99,7 +101,7 @@ h2 {
   cursor: pointer;
   transition: background .15s;
 }
-.cta:hover { background: var(--line-dark); }
+
 .cta .ic { width: 40px; height: 40px; }
 .cta.big { padding: 18px 44px 18px 30px; font-size: 21px; }
 .line-btn {
@@ -115,12 +117,12 @@ h2 {
   font-weight: 700;
   cursor: pointer;
 }
-.line-btn:hover { background: var(--paper); }
+
 .line-btn .ic { width: 30px; height: 30px; }
 
 /* ===== 0. 困りごとの1文 ===== */
 .mission {
-  padding-block: 14px;
+  padding-block: calc(14px + env(safe-area-inset-top, 0px)) 14px;
   padding-inline: max(var(--gutter), env(safe-area-inset-left, 0px)) max(var(--gutter), env(safe-area-inset-right, 0px));
   background: var(--ai);
   color: #fff;
@@ -270,7 +272,13 @@ h2 {
   background: transparent;
   cursor: pointer;
 }
-.spot:hover, .spot:focus-visible { outline: 4px solid var(--line); outline-offset: 2px; }
+.spot:focus-visible { outline: 4px solid var(--line); outline-offset: 2px; }
+.spot:active { background: rgba(6, 199, 85, .18); }
+@media (hover: hover) {
+  .cta:hover { background: var(--line-dark); }
+  .line-btn:hover { background: var(--paper); }
+  .spot:hover { outline: 4px solid var(--line); outline-offset: 2px; }
+}
 
 /* ===== 7. 続けるほどラクに ===== */
 .perks {
@@ -311,7 +319,7 @@ h2 {
 .join .note { margin-top: 20px; color: rgba(255, 255, 255, .78); font-size: var(--fs-small); }
 
 footer {
-  padding-block: 28px 40px;
+  padding-block: 28px calc(40px + env(safe-area-inset-bottom, 0px));
   padding-inline: max(var(--gutter), env(safe-area-inset-left, 0px)) max(var(--gutter), env(safe-area-inset-right, 0px));
   background: var(--ai);
   border-top: 1px solid rgba(255, 255, 255, .14);
@@ -353,7 +361,7 @@ footer {
 /* ===== スマホ ===== */
 @media (max-width: 767px) {
   .sp-only { display: inline; }
-  .mission { font-size: 15px; padding-block: 12px; }
+  .mission { font-size: 15px; padding-block: calc(12px + env(safe-area-inset-top, 0px)) 12px; }
 
   .hero { padding-top: 48px; }
   .brand { gap: 14px; }
@@ -382,8 +390,8 @@ footer {
   .try { margin-top: 18px; }
   .line-btn { margin-top: 20px; }
 
-  .device-wrap.phone { --s: .8; }
-  .device-wrap.tablet { --s: .61; }
+  .device-wrap.phone { --s: .86; }   /* 428 × .86 = 368px */
+  .device-wrap.tablet { --s: .66; }  /* 560 × .66 = 370px */
 
   .perks { grid-template-columns: minmax(0, 1fr); margin-top: 24px; }
   .perks li { gap: 16px; padding-block: 14px; font-size: 17px; }
@@ -395,7 +403,19 @@ footer {
   .join .cta { width: 100%; padding: 16px 20px; font-size: 19px; }
 }
 
-/* 幅 360px 未満でも、端末を画面に収める */
+/* 幅 375〜401px（iPhone SE・mini など） */
+@media (max-width: 401px) {
+  .device-wrap.phone { --s: .8; }
+  .device-wrap.tablet { --s: .61; }
+}
+
+/* 横向きのスマホ：高さが低いので、端末を小さめにする */
+@media (orientation: landscape) and (max-height: 500px) {
+  .device-wrap.phone { --s: .7; }
+  .device-wrap.tablet { --s: .62; }
+}
+
+/* 幅 375px 未満でも、端末を画面に収める */
 @media (max-width: 374px) {
   .device-wrap.phone { --s: .74; }
   .device-wrap.tablet { --s: .56; }
